@@ -31,6 +31,7 @@ def tweet():
 		'tweet' :  tweet
 	})
 	return '', 200
+
 class CustomJSONEncoder(JSONEncoder):
 	def default(self, obj):
 		if isinstance(obj, set):
@@ -49,6 +50,7 @@ def follow():
 	user = app.users[user_id]
 	user.setdefault('follow', set()).add(user_id_to_follow)
 	return jsonify(user)
+
 @app.route('/unfollow' , methods=['POST'])
 def unfollow():
 	payload = request.json
